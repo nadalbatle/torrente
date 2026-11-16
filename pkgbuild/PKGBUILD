@@ -9,6 +9,7 @@ depends=('qt6-base' 'qt6-declarative' 'qt6-wayland' 'xdg-desktop-portal' 'qbitto
 optdepends=('python: searching through qBittorrent search plugins')
 makedepends=('gcc' 'make')
 install=torrente.install
+options=('!debug')
 source=()
 sha256sums=()
 
