@@ -1,0 +1,48 @@
+# Builds and tests Torrente on x86_64 in a real Arch Linux, and attaches the
+# package to each GitHub release. The aarch64 package is built on Asahi by
+# hand: the archlinux image only exists for x86_64, and emulating x86_64 on
+# Asahi's 16K pages fails.
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  x86_64:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - name: Install build tools
+        run: pacman -Syu --noconfirm --needed base-devel git github-cli nodejs qt6-base qt6-declarative
+
+      - uses: actions/checkout@v4
+
+      - name: Test
+        run: bin/test
+
+      - name: Package
+        # makepkg refuses to run as root.
+        run: |
+          rm -rf build
+          useradd -m builder
+          chown -R builder .
+          su builder -c 'cd pkgbuild && makepkg -f -d --noconfirm'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: torrente-x86_64
+          path: pkgbuild/*.pkg.tar.*
+
+      - name: Attach to the release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" pkgbuild/*.pkg.tar.* --clobber -R "${{ github.repository }}"
