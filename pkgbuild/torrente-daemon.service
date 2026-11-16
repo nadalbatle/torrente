@@ -1,0 +1,11 @@
+[Unit]
+Description=Torrente daemon (files, tags, and announces downloads)
+# Started along with the engine (it Wants this unit) and stopped with it.
+After=torrente-engine.service
+PartOf=torrente-engine.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/torrente daemon
+Restart=on-failure
+RestartSec=5

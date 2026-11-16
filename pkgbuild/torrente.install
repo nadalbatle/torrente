@@ -1,0 +1,13 @@
+post_install() {
+  echo "Torrente downloads through qbittorrent-nox, run as your user."
+  echo "Start it from Torrente's window, or with:"
+  echo "  systemctl --user enable --now torrente-engine.service"
+  echo "Add Torrente to the Omarchy bar with:"
+  echo "  torrente plugin install"
+}
+
+post_upgrade() {
+  echo "Torrente now files new downloads even with its window closed."
+  echo "Restart the engine once to start the daemon beside it:"
+  echo "  systemctl --user restart torrente-engine.service"
+}

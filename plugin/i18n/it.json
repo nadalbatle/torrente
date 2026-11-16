@@ -1,0 +1,43 @@
+{
+  "action.openFolder": "Apri cartella",
+  "action.openTorrente": "Apri Torrente",
+  "action.paste": "Incolla link magnet",
+  "action.pause": "Pausa",
+  "action.resume": "Riprendi",
+  "action.startEngine": "Avvia il motore",
+  "bar.downloading": {
+    "one": "%1 in download",
+    "many": "%1 in download",
+    "other": "%1 in download"
+  },
+  "bar.forbidden": "Torrente: il motore chiede l'accesso",
+  "bar.idle": "Torrente: nessun download in corso",
+  "bar.offline": "Torrente: il motore non è in esecuzione",
+  "eta.hours": "%1 h %2 min rimanenti",
+  "eta.minutes": "%1 min rimanenti",
+  "hero.connecting": "Connessione al motore…",
+  "hero.forbidden": "Il motore chiede l'accesso",
+  "hero.idle": "Nessun download in corso",
+  "hero.offline": "Il motore non è in esecuzione",
+  "notice.added": "Aggiunto. Torrente lo ordinerà quando arriva l'elenco dei file.",
+  "notice.engineRefused": "Il motore l'ha rifiutato.",
+  "notice.noMagnet": "Negli appunti non c'è nessun link magnet.",
+  "notice.starting": "Avvio del motore…",
+  "panel.empty": "Nessun download in corso. Incolla un link magnet, o apri Torrente per cercare.",
+  "panel.forbidden": "Il motore chiede l'accesso. Nelle impostazioni dell'interfaccia web di qBittorrent, consenti localhost senza autenticazione.",
+  "section.downloading": "In download",
+  "section.finished": "Completati oggi",
+  "section.more": {
+    "one": "e altro %1 in Torrente",
+    "many": "e altri %1 in Torrente",
+    "other": "e altri %1 in Torrente"
+  },
+  "status.checking": "Verifica",
+  "status.downloading": "In download",
+  "status.metadata": "Recupero dell'elenco dei file",
+  "status.moving": "Spostamento",
+  "status.problem": "Problema, apri Torrente",
+  "status.queued": "In coda",
+  "status.stalled": "Ricerca di peer",
+  "status.stopped": "In pausa"
+}

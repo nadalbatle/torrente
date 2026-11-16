@@ -1,0 +1,41 @@
+{
+  "action.openFolder": "Öppna mapp",
+  "action.openTorrente": "Öppna Torrente",
+  "action.paste": "Klistra in magnetlänk",
+  "action.pause": "Pausa",
+  "action.resume": "Återuppta",
+  "action.startEngine": "Starta motorn",
+  "bar.downloading": {
+    "one": "%1 laddas ner",
+    "other": "%1 laddas ner"
+  },
+  "bar.forbidden": "Torrente: motorn kräver inloggning",
+  "bar.idle": "Torrente: inget laddas ner",
+  "bar.offline": "Torrente: motorn körs inte",
+  "eta.hours": "%1 h %2 min kvar",
+  "eta.minutes": "%1 min kvar",
+  "hero.connecting": "Ansluter till motorn…",
+  "hero.forbidden": "Motorn kräver inloggning",
+  "hero.idle": "Inget laddas ner",
+  "hero.offline": "Motorn körs inte",
+  "notice.added": "Tillagd. Torrente sorterar den när fillistan kommer.",
+  "notice.engineRefused": "Motorn vägrade.",
+  "notice.noMagnet": "Det finns ingen magnetlänk i urklipp.",
+  "notice.starting": "Startar motorn…",
+  "panel.empty": "Inget laddas ner. Klistra in en magnetlänk, eller öppna Torrente för att söka.",
+  "panel.forbidden": "Motorn kräver inloggning. Tillåt localhost utan autentisering i qBittorrents webbgränssnittsinställningar.",
+  "section.downloading": "Laddas ner",
+  "section.finished": "Klara i dag",
+  "section.more": {
+    "one": "och %1 till i Torrente",
+    "other": "och %1 till i Torrente"
+  },
+  "status.checking": "Kontrollerar",
+  "status.downloading": "Laddar ner",
+  "status.metadata": "Hämtar fillistan",
+  "status.moving": "Flyttar",
+  "status.problem": "Problem, öppna Torrente",
+  "status.queued": "I kö",
+  "status.stalled": "Letar efter jämlikar",
+  "status.stopped": "Pausad"
+}

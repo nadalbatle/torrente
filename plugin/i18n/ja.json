@@ -1,0 +1,39 @@
+{
+  "action.openFolder": "フォルダを開く",
+  "action.openTorrente": "Torrente を開く",
+  "action.paste": "マグネットリンクを貼り付け",
+  "action.pause": "一時停止",
+  "action.resume": "再開",
+  "action.startEngine": "エンジンを起動",
+  "bar.downloading": {
+    "other": "%1 件ダウンロード中"
+  },
+  "bar.forbidden": "Torrente: エンジンがログインを求めています",
+  "bar.idle": "Torrente: ダウンロード中のものはありません",
+  "bar.offline": "Torrente: エンジンが動いていません",
+  "eta.hours": "残り %1 時間 %2 分",
+  "eta.minutes": "残り %1 分",
+  "hero.connecting": "エンジンに接続中…",
+  "hero.forbidden": "エンジンがログインを求めています",
+  "hero.idle": "ダウンロード中のものはありません",
+  "hero.offline": "エンジンが動いていません",
+  "notice.added": "追加しました。ファイル一覧が届いたら Torrente が整理します。",
+  "notice.engineRefused": "エンジンに拒否されました。",
+  "notice.noMagnet": "クリップボードにマグネットリンクがありません。",
+  "notice.starting": "エンジンを起動中…",
+  "panel.empty": "ダウンロード中のものはありません。マグネットリンクを貼り付けるか、Torrente を開いて検索してください。",
+  "panel.forbidden": "エンジンがログインを求めています。qBittorrent の Web UI 設定で localhost を認証なしで許可してください。",
+  "section.downloading": "ダウンロード中",
+  "section.finished": "今日完了",
+  "section.more": {
+    "other": "ほか %1 件は Torrente で"
+  },
+  "status.checking": "確認中",
+  "status.downloading": "ダウンロード中",
+  "status.metadata": "ファイル一覧を取得中",
+  "status.moving": "移動中",
+  "status.problem": "問題があります。Torrente を開いてください",
+  "status.queued": "待機列",
+  "status.stalled": "ピアを探しています",
+  "status.stopped": "一時停止"
+}

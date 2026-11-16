@@ -1,0 +1,41 @@
+{
+  "action.openFolder": "Ordner öffnen",
+  "action.openTorrente": "Torrente öffnen",
+  "action.paste": "Magnet-Link einfügen",
+  "action.pause": "Pausieren",
+  "action.resume": "Fortsetzen",
+  "action.startEngine": "Engine starten",
+  "bar.downloading": {
+    "one": "%1 lädt herunter",
+    "other": "%1 laden herunter"
+  },
+  "bar.forbidden": "Torrente: die Engine verlangt eine Anmeldung",
+  "bar.idle": "Torrente: es wird nichts heruntergeladen",
+  "bar.offline": "Torrente: die Engine läuft nicht",
+  "eta.hours": "noch %1 h %2 min",
+  "eta.minutes": "noch %1 min",
+  "hero.connecting": "Verbindung zur Engine…",
+  "hero.forbidden": "Die Engine verlangt eine Anmeldung",
+  "hero.idle": "Es wird nichts heruntergeladen",
+  "hero.offline": "Die Engine läuft nicht",
+  "notice.added": "Hinzugefügt. Torrente sortiert ihn ein, sobald die Dateiliste da ist.",
+  "notice.engineRefused": "Die Engine hat das abgelehnt.",
+  "notice.noMagnet": "In der Zwischenablage ist kein Magnet-Link.",
+  "notice.starting": "Engine wird gestartet…",
+  "panel.empty": "Es wird nichts heruntergeladen. Füge einen Magnet-Link ein oder öffne Torrente zum Suchen.",
+  "panel.forbidden": "Die Engine verlangt eine Anmeldung. Erlaube in den Web-UI-Einstellungen von qBittorrent localhost ohne Authentifizierung.",
+  "section.downloading": "Lädt herunter",
+  "section.finished": "Heute fertig",
+  "section.more": {
+    "one": "und %1 weiterer in Torrente",
+    "other": "und %1 weitere in Torrente"
+  },
+  "status.checking": "Wird geprüft",
+  "status.downloading": "Lädt herunter",
+  "status.metadata": "Dateiliste wird geladen",
+  "status.moving": "Wird verschoben",
+  "status.problem": "Problem, öffne Torrente",
+  "status.queued": "In Warteschlange",
+  "status.stalled": "Suche nach Peers",
+  "status.stopped": "Pausiert"
+}

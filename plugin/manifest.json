@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "torrente.panel",
+  "name": "Torrente",
+  "version": "0.3.0",
+  "author": "nadalbatle",
+  "license": "MIT",
+  "description": "Torrente's downloads on the bar: speed while downloading, a panel to pause, resume and open them, and a quick way to add the magnet on the clipboard. Talks only to Torrente's engine on localhost.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Torrente",
+    "description": "Download speed, downloads under way and just finished, and paste a magnet",
+    "category": "Status",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "port": 8080,
+      "hideWhenIdle": false
+    },
+    "schema": [
+      {
+        "key": "hideWhenIdle",
+        "type": "boolean",
+        "label": "Hide when nothing downloads",
+        "description": "Show the icon only while something is downloading.",
+        "defaultValue": false
+      },
+      {
+        "key": "port",
+        "type": "integer",
+        "label": "Engine port",
+        "description": "The port of the engine's Web API on 127.0.0.1.",
+        "min": 1,
+        "max": 65535,
+        "step": 1,
+        "defaultValue": 8080
+      }
+    ]
+  }
+}

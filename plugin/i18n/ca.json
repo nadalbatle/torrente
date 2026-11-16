@@ -1,0 +1,43 @@
+{
+  "action.openFolder": "Obre la carpeta",
+  "action.openTorrente": "Obre Torrente",
+  "action.paste": "Enganxa un enllaç magnet",
+  "action.pause": "Posa en pausa",
+  "action.resume": "Reprèn",
+  "action.startEngine": "Inicia el motor",
+  "bar.downloading": {
+    "one": "%1 baixant-se",
+    "many": "%1 baixant-se",
+    "other": "%1 baixant-se"
+  },
+  "bar.forbidden": "Torrente: el motor demana iniciar sessió",
+  "bar.idle": "Torrente: no s'està baixant res",
+  "bar.offline": "Torrente: el motor no està en marxa",
+  "eta.hours": "queden %1 h %2 min",
+  "eta.minutes": "queden %1 min",
+  "hero.connecting": "Connectant amb el motor…",
+  "hero.forbidden": "El motor demana iniciar sessió",
+  "hero.idle": "No s'està baixant res",
+  "hero.offline": "El motor no està en marxa",
+  "notice.added": "Afegit. Torrente l'endreçarà quan arribi la llista de fitxers.",
+  "notice.engineRefused": "El motor ho ha rebutjat.",
+  "notice.noMagnet": "No hi ha cap enllaç magnet al porta-retalls.",
+  "notice.starting": "Iniciant el motor…",
+  "panel.empty": "No s'està baixant res. Enganxa un enllaç magnet, o obre Torrente per cercar.",
+  "panel.forbidden": "El motor demana iniciar sessió. A la configuració de la interfície web de qBittorrent, permet localhost sense autenticació.",
+  "section.downloading": "Baixant-se",
+  "section.finished": "Acabades avui",
+  "section.more": {
+    "one": "i %1 més a Torrente",
+    "many": "i %1 més a Torrente",
+    "other": "i %1 més a Torrente"
+  },
+  "status.checking": "Comprovant",
+  "status.downloading": "Baixant",
+  "status.metadata": "Obtenint la llista de fitxers",
+  "status.moving": "Movent",
+  "status.problem": "Hi ha un problema, obre Torrente",
+  "status.queued": "En cua",
+  "status.stalled": "Cercant parells",
+  "status.stopped": "En pausa"
+}

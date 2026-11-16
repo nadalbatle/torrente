@@ -1,0 +1,41 @@
+{
+  "action.openFolder": "Map openen",
+  "action.openTorrente": "Torrente openen",
+  "action.paste": "Magnetlink plakken",
+  "action.pause": "Pauzeren",
+  "action.resume": "Hervatten",
+  "action.startEngine": "Engine starten",
+  "bar.downloading": {
+    "one": "%1 wordt gedownload",
+    "other": "%1 worden gedownload"
+  },
+  "bar.forbidden": "Torrente: de engine vraagt om in te loggen",
+  "bar.idle": "Torrente: er wordt niets gedownload",
+  "bar.offline": "Torrente: de engine draait niet",
+  "eta.hours": "nog %1 u %2 min",
+  "eta.minutes": "nog %1 min",
+  "hero.connecting": "Verbinden met de engine…",
+  "hero.forbidden": "De engine vraagt om in te loggen",
+  "hero.idle": "Er wordt niets gedownload",
+  "hero.offline": "De engine draait niet",
+  "notice.added": "Toegevoegd. Torrente ordent hem zodra de bestandslijst binnen is.",
+  "notice.engineRefused": "De engine weigerde dat.",
+  "notice.noMagnet": "Er staat geen magnetlink op het klembord.",
+  "notice.starting": "Engine starten…",
+  "panel.empty": "Er wordt niets gedownload. Plak een magnetlink, of open Torrente om te zoeken.",
+  "panel.forbidden": "De engine vraagt om in te loggen. Sta in de Web UI-instellingen van qBittorrent localhost toe zonder authenticatie.",
+  "section.downloading": "Bezig",
+  "section.finished": "Vandaag klaar",
+  "section.more": {
+    "one": "en nog %1 in Torrente",
+    "other": "en nog %1 in Torrente"
+  },
+  "status.checking": "Controleren",
+  "status.downloading": "Downloaden",
+  "status.metadata": "Bestandslijst ophalen",
+  "status.moving": "Verplaatsen",
+  "status.problem": "Probleem, open Torrente",
+  "status.queued": "In wachtrij",
+  "status.stalled": "Zoeken naar peers",
+  "status.stopped": "Gepauzeerd"
+}

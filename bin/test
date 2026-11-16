@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+mkdir -p "$ROOT/build/tests"
+cd "$ROOT/build/tests"
+
+qmake6 "$ROOT/tests/torrente_tests.pro"
+make -j"$(nproc)"
+QT_QPA_PLATFORM=offscreen ./torrente_tests
+node "$ROOT/plugin/tests/Model.test.js"

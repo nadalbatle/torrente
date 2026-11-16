@@ -1,0 +1,17 @@
+[Unit]
+Description=Torrente engine (qBittorrent-nox)
+Documentation=man:qbittorrent-nox(1)
+After=network-online.target
+# The daemon files and tags new torrents even while Torrente's window is closed.
+Wants=torrente-daemon.service
+
+[Service]
+Type=simple
+# The engine shares qBittorrent's profile (~/.config/qBittorrent), so torrents,
+# categories, and tags carry over. Torrente talks to its Web API on localhost.
+ExecStart=/usr/bin/qbittorrent-nox --confirm-legal-notice
+Restart=on-failure
+TimeoutStopSec=1800
+
+[Install]
+WantedBy=default.target

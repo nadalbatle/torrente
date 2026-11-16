@@ -1,0 +1,43 @@
+{
+  "action.openFolder": "Ouvrir le dossier",
+  "action.openTorrente": "Ouvrir Torrente",
+  "action.paste": "Coller un lien magnet",
+  "action.pause": "Pause",
+  "action.resume": "Reprendre",
+  "action.startEngine": "Démarrer le moteur",
+  "bar.downloading": {
+    "one": "%1 en téléchargement",
+    "many": "%1 en téléchargement",
+    "other": "%1 en téléchargement"
+  },
+  "bar.forbidden": "Torrente : le moteur demande une connexion",
+  "bar.idle": "Torrente : rien en téléchargement",
+  "bar.offline": "Torrente : le moteur ne tourne pas",
+  "eta.hours": "%1 h %2 min restantes",
+  "eta.minutes": "%1 min restantes",
+  "hero.connecting": "Connexion au moteur…",
+  "hero.forbidden": "Le moteur demande une connexion",
+  "hero.idle": "Rien en téléchargement",
+  "hero.offline": "Le moteur ne tourne pas",
+  "notice.added": "Ajouté. Torrente le rangera dès que la liste des fichiers arrivera.",
+  "notice.engineRefused": "Le moteur a refusé.",
+  "notice.noMagnet": "Aucun lien magnet dans le presse-papiers.",
+  "notice.starting": "Démarrage du moteur…",
+  "panel.empty": "Rien en téléchargement. Collez un lien magnet, ou ouvrez Torrente pour chercher.",
+  "panel.forbidden": "Le moteur demande une connexion. Dans les réglages de l'interface web de qBittorrent, autorisez localhost sans authentification.",
+  "section.downloading": "En téléchargement",
+  "section.finished": "Terminés aujourd'hui",
+  "section.more": {
+    "one": "et %1 autre dans Torrente",
+    "many": "et %1 autres dans Torrente",
+    "other": "et %1 autres dans Torrente"
+  },
+  "status.checking": "Vérification",
+  "status.downloading": "Téléchargement",
+  "status.metadata": "Récupération de la liste des fichiers",
+  "status.moving": "Déplacement",
+  "status.problem": "Problème, ouvrez Torrente",
+  "status.queued": "En file d'attente",
+  "status.stalled": "Recherche de pairs",
+  "status.stopped": "En pause"
+}

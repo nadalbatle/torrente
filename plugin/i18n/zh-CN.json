@@ -1,0 +1,39 @@
+{
+  "action.openFolder": "打开文件夹",
+  "action.openTorrente": "打开 Torrente",
+  "action.paste": "粘贴磁力链接",
+  "action.pause": "暂停",
+  "action.resume": "继续",
+  "action.startEngine": "启动引擎",
+  "bar.downloading": {
+    "other": "%1 个正在下载"
+  },
+  "bar.forbidden": "Torrente：引擎要求登录",
+  "bar.idle": "Torrente：没有正在下载的内容",
+  "bar.offline": "Torrente：引擎未运行",
+  "eta.hours": "还剩 %1 小时 %2 分钟",
+  "eta.minutes": "还剩 %1 分钟",
+  "hero.connecting": "正在连接引擎…",
+  "hero.forbidden": "引擎要求登录",
+  "hero.idle": "没有正在下载的内容",
+  "hero.offline": "引擎未运行",
+  "notice.added": "已添加。文件列表到达后 Torrente 会自动整理。",
+  "notice.engineRefused": "引擎拒绝了操作。",
+  "notice.noMagnet": "剪贴板中没有磁力链接。",
+  "notice.starting": "正在启动引擎…",
+  "panel.empty": "没有正在下载的内容。粘贴磁力链接，或打开 Torrente 搜索。",
+  "panel.forbidden": "引擎要求登录。请在 qBittorrent 的 Web UI 设置中允许 localhost 免认证。",
+  "section.downloading": "正在下载",
+  "section.finished": "今天完成",
+  "section.more": {
+    "other": "另有 %1 个在 Torrente 中"
+  },
+  "status.checking": "正在校验",
+  "status.downloading": "下载中",
+  "status.metadata": "正在获取文件列表",
+  "status.moving": "正在移动",
+  "status.problem": "出现问题，请打开 Torrente",
+  "status.queued": "排队中",
+  "status.stalled": "正在寻找用户",
+  "status.stopped": "已暂停"
+}

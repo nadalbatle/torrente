@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="Main.qml">Main.qml</file>
+        <file alias="Format.js">Format.js</file>
+        <file alias="Chip.qml">Chip.qml</file>
+        <file alias="ConfirmDialog.qml">ConfirmDialog.qml</file>
+        <file alias="DialogButton.qml">DialogButton.qml</file>
+        <file alias="DialogPanel.qml">DialogPanel.qml</file>
+        <file alias="EngineNotice.qml">EngineNotice.qml</file>
+        <file alias="EnginesPanel.qml">EnginesPanel.qml</file>
+        <file alias="HelpPanel.qml">HelpPanel.qml</file>
+        <file alias="ListPicker.qml">ListPicker.qml</file>
+        <file alias="ResultRow.qml">ResultRow.qml</file>
+        <file alias="SettingsPanel.qml">SettingsPanel.qml</file>
+        <file alias="Sheet.qml">Sheet.qml</file>
+        <file alias="SideEntry.qml">SideEntry.qml</file>
+        <file alias="TagsEditor.qml">TagsEditor.qml</file>
+        <file alias="TorrentRow.qml">TorrentRow.qml</file>
+        <file alias="i18n/en.json">i18n/en.json</file>
+        <file alias="i18n/es.json">i18n/es.json</file>
+        <file alias="i18n/ar.json">i18n/ar.json</file>
+        <file alias="i18n/ca.json">i18n/ca.json</file>
+        <file alias="i18n/de.json">i18n/de.json</file>
+        <file alias="i18n/fr.json">i18n/fr.json</file>
+        <file alias="i18n/it.json">i18n/it.json</file>
+        <file alias="i18n/ja.json">i18n/ja.json</file>
+        <file alias="i18n/ko.json">i18n/ko.json</file>
+        <file alias="i18n/nl.json">i18n/nl.json</file>
+        <file alias="i18n/pl.json">i18n/pl.json</file>
+        <file alias="i18n/pt.json">i18n/pt.json</file>
+        <file alias="i18n/pt-BR.json">i18n/pt-BR.json</file>
+        <file alias="i18n/ru.json">i18n/ru.json</file>
+        <file alias="i18n/sv.json">i18n/sv.json</file>
+        <file alias="i18n/uk.json">i18n/uk.json</file>
+        <file alias="i18n/zh-CN.json">i18n/zh-CN.json</file>
+        <file alias="i18n/zh-TW.json">i18n/zh-TW.json</file>
+    </qresource>
+</RCC>

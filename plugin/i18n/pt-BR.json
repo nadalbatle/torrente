@@ -1,0 +1,43 @@
+{
+  "action.openFolder": "Abrir pasta",
+  "action.openTorrente": "Abrir o Torrente",
+  "action.paste": "Colar link magnet",
+  "action.pause": "Pausar",
+  "action.resume": "Retomar",
+  "action.startEngine": "Iniciar o motor",
+  "bar.downloading": {
+    "one": "%1 baixando",
+    "many": "%1 baixando",
+    "other": "%1 baixando"
+  },
+  "bar.forbidden": "Torrente: o motor pede login",
+  "bar.idle": "Torrente: nada baixando",
+  "bar.offline": "Torrente: o motor não está rodando",
+  "eta.hours": "faltam %1 h %2 min",
+  "eta.minutes": "faltam %1 min",
+  "hero.connecting": "Conectando ao motor…",
+  "hero.forbidden": "O motor pede login",
+  "hero.idle": "Nada baixando",
+  "hero.offline": "O motor não está rodando",
+  "notice.added": "Adicionado. O Torrente vai organizá-lo quando a lista de arquivos chegar.",
+  "notice.engineRefused": "O motor recusou.",
+  "notice.noMagnet": "Não há nenhum link magnet na área de transferência.",
+  "notice.starting": "Iniciando o motor…",
+  "panel.empty": "Nada baixando. Cole um link magnet, ou abra o Torrente para buscar.",
+  "panel.forbidden": "O motor pede login. Nas configurações da interface web do qBittorrent, permita localhost sem autenticação.",
+  "section.downloading": "Baixando",
+  "section.finished": "Concluídos hoje",
+  "section.more": {
+    "one": "e mais %1 no Torrente",
+    "many": "e mais %1 no Torrente",
+    "other": "e mais %1 no Torrente"
+  },
+  "status.checking": "Verificando",
+  "status.downloading": "Baixando",
+  "status.metadata": "Obtendo a lista de arquivos",
+  "status.moving": "Movendo",
+  "status.problem": "Problema, abra o Torrente",
+  "status.queued": "Na fila",
+  "status.stalled": "Procurando peers",
+  "status.stopped": "Pausado"
+}

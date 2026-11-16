@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Torrente: a waterfall pouring into a pool, in the style of macOS icons.
+       An original drawing; the body sits on the macOS grid (824 px in 1024). -->
+  <defs>
+    <clipPath id="body">
+      <rect x="100" y="100" width="824" height="824" rx="185"/>
+    </clipPath>
+
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d2a45"/>
+      <stop offset="0.45" stop-color="#1d5f86"/>
+      <stop offset="1" stop-color="#58b9d8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.32" r="0.55">
+      <stop offset="0" stop-color="#bff1ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#bff1ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="farHills" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a6f8f"/>
+      <stop offset="1" stop-color="#1b4d69"/>
+    </linearGradient>
+    <linearGradient id="cliffLeft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#14222c"/>
+      <stop offset="0.7" stop-color="#2b4352"/>
+      <stop offset="1" stop-color="#456474"/>
+    </linearGradient>
+    <linearGradient id="cliffRight" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#101b23"/>
+      <stop offset="0.7" stop-color="#26404f"/>
+      <stop offset="1" stop-color="#3d5b6b"/>
+    </linearGradient>
+    <linearGradient id="moss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6fcf7a"/>
+      <stop offset="1" stop-color="#2f7d4a"/>
+    </linearGradient>
+
+    <linearGradient id="fall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9fbff"/>
+      <stop offset="0.35" stop-color="#9fe6ff"/>
+      <stop offset="0.8" stop-color="#43b6ea"/>
+      <stop offset="1" stop-color="#d9f6ff"/>
+    </linearGradient>
+    <linearGradient id="fallEdge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b4f7a" stop-opacity="0.55"/>
+      <stop offset="0.18" stop-color="#0b4f7a" stop-opacity="0"/>
+      <stop offset="0.82" stop-color="#0b4f7a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0b4f7a" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#8fe0ff"/>
+    </linearGradient>
+
+    <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3bb3e3"/>
+      <stop offset="0.5" stop-color="#1676b0"/>
+      <stop offset="1" stop-color="#0a3d66"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="mist" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="#0d2a45"/>
+  </g>
+
+  <g clip-path="url(#body)">
+    <!-- Sky and the light behind the falls. -->
+    <rect x="100" y="100" width="824" height="824" fill="url(#sky)"/>
+    <rect x="100" y="100" width="824" height="824" fill="url(#glow)"/>
+
+    <!-- Soft clouds. -->
+    <g fill="#ffffff" filter="url(#mist)" opacity="0.5">
+      <ellipse cx="260" cy="200" rx="120" ry="28"/>
+      <ellipse cx="760" cy="170" rx="140" ry="30"/>
+      <ellipse cx="560" cy="230" rx="90" ry="20"/>
+    </g>
+
+    <!-- Distant hills. -->
+    <path d="M100 430 C 190 360, 260 380, 330 340 C 400 300, 450 330, 512 300 C 580 270, 640 320, 700 300 C 780 275, 850 330, 924 310 V 600 H 100 Z"
+          fill="url(#farHills)" opacity="0.75"/>
+
+    <!-- The left cliff, with moss on its ledges. -->
+    <path d="M100 250 C 180 240, 260 270, 330 300 C 380 320, 405 330, 420 360 L 430 760 C 380 790, 300 800, 220 790 L 100 780 Z"
+          fill="url(#cliffLeft)"/>
+    <path d="M100 250 C 180 240, 260 270, 330 300 C 380 320, 405 330, 420 360 C 380 350, 330 340, 280 320 C 220 300, 160 290, 100 300 Z"
+          fill="url(#moss)"/>
+    <path d="M150 470 C 210 455, 270 470, 330 470" stroke="#0e1a22" stroke-width="10" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M170 600 C 230 585, 300 600, 380 595" stroke="#0e1a22" stroke-width="10" fill="none" opacity="0.45" stroke-linecap="round"/>
+    <path d="M330 470 C 350 468, 370 475, 395 470" stroke="#7fd98a" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <!-- Lit rock faces. -->
+    <g fill="#6f93a6" opacity="0.45">
+      <path d="M300 330 L 395 352 L 405 460 L 330 470 Z"/>
+      <path d="M210 480 L 330 472 L 380 595 L 250 600 Z" opacity="0.7"/>
+      <path d="M330 600 L 420 598 L 428 740 L 360 760 Z" opacity="0.8"/>
+    </g>
+    <g fill="#0b151c" opacity="0.35">
+      <path d="M100 320 L 200 330 L 170 470 L 100 480 Z"/>
+      <path d="M100 610 L 190 600 L 230 780 L 100 780 Z"/>
+    </g>
+
+    <!-- The right cliff. -->
+    <path d="M924 240 C 850 235, 760 265, 690 300 C 640 322, 615 335, 604 362 L 594 760 C 650 792, 730 800, 810 790 L 924 780 Z"
+          fill="url(#cliffRight)"/>
+    <path d="M924 240 C 850 235, 760 265, 690 300 C 640 322, 615 335, 604 362 C 645 350, 695 338, 745 318 C 805 296, 870 288, 924 296 Z"
+          fill="url(#moss)"/>
+    <path d="M860 450 C 800 440, 740 455, 680 452" stroke="#0e1a22" stroke-width="10" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M850 620 C 780 605, 700 620, 630 612" stroke="#0e1a22" stroke-width="10" fill="none" opacity="0.45" stroke-linecap="round"/>
+    <g fill="#5f8496" opacity="0.4">
+      <path d="M720 322 L 620 360 L 612 450 L 690 455 Z"/>
+      <path d="M800 455 L 690 456 L 650 610 L 780 612 Z" opacity="0.7"/>
+      <path d="M690 620 L 610 615 L 600 745 L 660 765 Z" opacity="0.8"/>
+    </g>
+    <g fill="#0a1218" opacity="0.4">
+      <path d="M924 310 L 830 318 L 860 460 L 924 470 Z"/>
+      <path d="M924 620 L 840 612 L 800 785 L 924 780 Z"/>
+    </g>
+
+    <!-- Pines along the clifftops. -->
+    <g fill="#1f5a3a">
+      <path d="M150 268 L 172 200 L 194 268 Z"/>
+      <path d="M140 286 L 172 220 L 204 286 Z"/>
+      <path d="M215 272 L 235 215 L 255 272 Z"/>
+      <path d="M205 290 L 235 235 L 265 290 Z"/>
+      <path d="M800 262 L 822 196 L 844 262 Z"/>
+      <path d="M790 280 L 822 214 L 854 280 Z"/>
+      <path d="M860 258 L 878 205 L 896 258 Z"/>
+      <path d="M852 274 L 878 222 L 904 274 Z"/>
+    </g>
+    <g fill="#2f7d4a">
+      <path d="M172 200 L 186 245 L 172 238 Z"/>
+      <path d="M822 196 L 836 240 L 822 233 Z"/>
+      <path d="M235 215 L 247 255 L 235 249 Z"/>
+      <path d="M878 205 L 889 243 L 878 238 Z"/>
+    </g>
+
+    <!-- The falls: water pouring over the lip between the cliffs. -->
+    <path d="M404 352 C 440 340, 584 340, 620 352 L 640 740 C 590 760, 434 760, 384 740 Z" fill="url(#fall)"/>
+    <path d="M404 352 C 440 340, 584 340, 620 352 L 640 740 C 590 760, 434 760, 384 740 Z" fill="url(#fallEdge)"/>
+    <!-- Streaks of falling water. -->
+    <g stroke="#ffffff" stroke-linecap="round" fill="none">
+      <path d="M440 370 L 430 720" stroke-width="10" opacity="0.55"/>
+      <path d="M478 362 L 474 735" stroke-width="6" opacity="0.7"/>
+      <path d="M512 360 L 512 740" stroke-width="12" opacity="0.6"/>
+      <path d="M548 362 L 552 735" stroke-width="6" opacity="0.7"/>
+      <path d="M585 370 L 596 720" stroke-width="10" opacity="0.55"/>
+      <path d="M458 420 L 452 600" stroke-width="3" opacity="0.9"/>
+      <path d="M532 400 L 534 640" stroke-width="3" opacity="0.9"/>
+      <path d="M568 430 L 574 610" stroke-width="3" opacity="0.8"/>
+    </g>
+    <g stroke="#0b5a8a" stroke-linecap="round" fill="none" opacity="0.35">
+      <path d="M496 380 L 493 700" stroke-width="4"/>
+      <path d="M530 380 L 532 700" stroke-width="4"/>
+      <path d="M418 400 L 410 700" stroke-width="4"/>
+      <path d="M606 400 L 616 700" stroke-width="4"/>
+    </g>
+    <!-- The lip, where the river turns over. -->
+    <path d="M398 356 C 440 330, 584 330, 626 356 C 590 372, 434 372, 398 356 Z" fill="url(#lip)"/>
+
+    <!-- The pool. -->
+    <path d="M100 760 C 250 720, 380 735, 512 735 C 644 735, 774 720, 924 760 V 924 H 100 Z" fill="url(#pool)"/>
+    <g fill="none" stroke="#bfefff" stroke-linecap="round" opacity="0.55">
+      <path d="M200 830 C 280 815, 360 815, 430 828" stroke-width="7"/>
+      <path d="M600 828 C 680 815, 760 815, 840 830" stroke-width="7"/>
+      <path d="M300 880 C 400 868, 620 868, 724 880" stroke-width="6" opacity="0.7"/>
+    </g>
+
+    <!-- Boulders at the water's edge. -->
+    <g>
+      <path d="M100 790 C 140 760, 210 762, 250 795 C 230 815, 140 820, 100 812 Z" fill="#2b4352"/>
+      <path d="M120 785 C 150 770, 200 770, 225 788" stroke="#6f93a6" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M924 792 C 880 762, 810 764, 772 796 C 795 816, 880 822, 924 814 Z" fill="#26404f"/>
+      <path d="M900 786 C 870 772, 820 772, 796 790" stroke="#5f8496" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <!-- Foam and mist where the falls hit the pool. -->
+    <g filter="url(#mist)" fill="#ffffff">
+      <ellipse cx="512" cy="760" rx="210" ry="55" opacity="0.85"/>
+      <ellipse cx="512" cy="700" rx="170" ry="45" opacity="0.4"/>
+    </g>
+    <g filter="url(#soft)" fill="#ffffff">
+      <ellipse cx="430" cy="755" rx="60" ry="24"/>
+      <ellipse cx="512" cy="765" rx="80" ry="28"/>
+      <ellipse cx="596" cy="755" rx="60" ry="24"/>
+      <circle cx="365" cy="742" r="16" opacity="0.8"/>
+      <circle cx="660" cy="742" r="16" opacity="0.8"/>
+    </g>
+    <!-- Spray drops. -->
+    <g fill="#e8fbff">
+      <circle cx="348" cy="705" r="7"/>
+      <circle cx="372" cy="680" r="5"/>
+      <circle cx="676" cy="700" r="7"/>
+      <circle cx="655" cy="676" r="5"/>
+      <circle cx="320" cy="730" r="4"/>
+      <circle cx="704" cy="726" r="4"/>
+    </g>
+
+    <!-- Glass highlight across the top, as macOS icons have. -->
+    <rect x="100" y="100" width="824" height="420" fill="url(#gloss)"/>
+  </g>
+
+  <!-- A fine rim so the icon holds its edge on dark and light backgrounds. -->
+  <rect x="101" y="101" width="822" height="822" rx="184" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+</svg>

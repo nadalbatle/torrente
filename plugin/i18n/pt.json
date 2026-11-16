@@ -1,0 +1,43 @@
+{
+  "action.openFolder": "Abrir pasta",
+  "action.openTorrente": "Abrir o Torrente",
+  "action.paste": "Colar ligação magnet",
+  "action.pause": "Pausar",
+  "action.resume": "Retomar",
+  "action.startEngine": "Iniciar o motor",
+  "bar.downloading": {
+    "one": "%1 a transferir",
+    "many": "%1 a transferir",
+    "other": "%1 a transferir"
+  },
+  "bar.forbidden": "Torrente: o motor pede início de sessão",
+  "bar.idle": "Torrente: nada a transferir",
+  "bar.offline": "Torrente: o motor não está a correr",
+  "eta.hours": "faltam %1 h %2 min",
+  "eta.minutes": "faltam %1 min",
+  "hero.connecting": "A ligar ao motor…",
+  "hero.forbidden": "O motor pede início de sessão",
+  "hero.idle": "Nada a transferir",
+  "hero.offline": "O motor não está a correr",
+  "notice.added": "Adicionado. O Torrente vai organizá-lo quando chegar a lista de ficheiros.",
+  "notice.engineRefused": "O motor recusou.",
+  "notice.noMagnet": "Não há nenhuma ligação magnet na área de transferência.",
+  "notice.starting": "A iniciar o motor…",
+  "panel.empty": "Nada a transferir. Cole uma ligação magnet, ou abra o Torrente para pesquisar.",
+  "panel.forbidden": "O motor pede início de sessão. Nas definições da interface web do qBittorrent, permita localhost sem autenticação.",
+  "section.downloading": "A transferir",
+  "section.finished": "Concluídas hoje",
+  "section.more": {
+    "one": "e mais %1 no Torrente",
+    "many": "e mais %1 no Torrente",
+    "other": "e mais %1 no Torrente"
+  },
+  "status.checking": "A verificar",
+  "status.downloading": "A transferir",
+  "status.metadata": "A obter a lista de ficheiros",
+  "status.moving": "A mover",
+  "status.problem": "Há um problema, abra o Torrente",
+  "status.queued": "Em fila",
+  "status.stalled": "À procura de pares",
+  "status.stopped": "Em pausa"
+}
