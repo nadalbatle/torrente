@@ -11,7 +11,7 @@ import QtQuick.Controls
 Rectangle {
     id: dialog
     anchors.fill: parent
-    color: "#cc000000"
+    color: theme.overlay
     // Right-to-left languages read the buttons, and the arrows, the other way.
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
@@ -53,7 +53,7 @@ Rectangle {
             Label {
                 textFormat: Text.PlainText
                 text: dialog.title
-                color: "white"
+                color: theme.foreground
                 font.pixelSize: 16
                 font.weight: Font.DemiBold
             }
@@ -61,7 +61,7 @@ Rectangle {
                 textFormat: Text.PlainText
                 width: Math.min(implicitWidth, dialog.width - 160)
                 text: dialog.message
-                color: "#d6d6da"
+                color: theme.foreground
                 font.pixelSize: 13
                 wrapMode: Text.WordWrap
                 bottomPadding: 12

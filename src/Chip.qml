@@ -11,16 +11,16 @@ Rectangle {
     implicitHeight: 18
     radius: Math.min(4, theme.radius)
     color: strong ? Qt.rgba(Qt.color(theme.accent).r, Qt.color(theme.accent).g, Qt.color(theme.accent).b, 0.16)
-                  : "#232327"
+                  : theme.hover
     border.width: 1
     border.color: strong ? Qt.rgba(Qt.color(theme.accent).r, Qt.color(theme.accent).g, Qt.color(theme.accent).b, 0.45)
-                         : "#333338"
+                         : theme.line
 
     Label {
         textFormat: Text.PlainText
         id: label
         anchors.centerIn: parent
-        color: chip.strong ? theme.accent : "#b8b8be"
+        color: chip.strong ? theme.accent : theme.dim
         font.pixelSize: 11
         font.weight: Font.Medium
     }

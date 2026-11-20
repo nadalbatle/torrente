@@ -43,7 +43,7 @@ Sheet {
             Rectangle {
                 anchors.fill: parent
                 radius: Math.min(4, theme.radius)
-                color: index === list.currentIndex ? "#2c2c30" : "transparent"
+                color: index === list.currentIndex ? theme.selected : "transparent"
             }
             Rectangle {
                 visible: index === list.currentIndex
@@ -56,7 +56,7 @@ Sheet {
                 anchors.verticalCenter: parent.verticalCenter
                 x: 14
                 text: modelData.label
-                color: index === list.currentIndex ? "white" : "#c7c7cc"
+                color: index === list.currentIndex ? theme.foreground : theme.foreground
                 font.pixelSize: 13
             }
             TapHandler {

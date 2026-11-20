@@ -16,7 +16,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: Math.min(4, theme.radius)
-        color: entry.current ? "#26262a" : hover.hovered ? "#1a1a1d" : "transparent"
+        color: entry.current ? theme.selected : hover.hovered ? theme.hover : "transparent"
     }
     Rectangle {
         visible: entry.current
@@ -39,14 +39,14 @@ Item {
             Layout.fillWidth: true
             text: entry.label
             elide: Text.ElideRight
-            color: entry.current ? "white" : "#c7c7cc"
+            color: entry.current ? theme.foreground : theme.foreground
             font.pixelSize: 13
             font.weight: entry.current ? Font.DemiBold : Font.Normal
         }
         Label {
             textFormat: Text.PlainText
             text: entry.count
-            color: "#6e6e73"
+            color: theme.faint
             font.pixelSize: 12
             font.features: { "tnum": 1 }
         }

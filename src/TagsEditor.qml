@@ -29,7 +29,7 @@ Sheet {
             textFormat: Text.PlainText
             Layout.fillWidth: true
             text: qsTr("Enter saves. Leave it empty to remove every tag.")
-            color: "#8e8e93"
+            color: theme.dim
             font.pixelSize: 12
             wrapMode: Text.WordWrap
         }

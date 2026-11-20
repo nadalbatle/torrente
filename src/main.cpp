@@ -1,5 +1,6 @@
 // Torrente — downloads torrents, finds them, and files them away, the Omarchy way.
 
+#include <QFont>
 #include <QGuiApplication>
 #include <QFileInfo>
 #include <QIcon>
@@ -74,6 +75,11 @@ int main(int argc, char *argv[]) {
     }
 
     QGuiApplication app(argc, argv);
+    // Omarchy's font, as the bar uses it: fontconfig's monospace, which
+    // omarchy-font-set points at the chosen family.
+    QFont font = app.font();
+    font.setFamily(QStringLiteral("monospace"));
+    app.setFont(font);
     app.setApplicationName("torrente");
     app.setApplicationVersion("0.3.0");
     app.setDesktopFileName("torrente");

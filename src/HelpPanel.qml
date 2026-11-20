@@ -42,7 +42,7 @@ Sheet {
                 readonly property var item: help.shortcuts[Math.floor(index / 2)]
                 Layout.fillWidth: index % 2 === 1
                 text: index % 2 === 0 ? item[0] : item[1]
-                color: index % 2 === 0 ? theme.accent : "#d6d6da"
+                color: index % 2 === 0 ? theme.accent : theme.foreground
                 font.pixelSize: 13
                 font.family: index % 2 === 0 ? "monospace" : Qt.application.font.family
                 wrapMode: Text.WordWrap

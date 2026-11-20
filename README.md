@@ -2,7 +2,7 @@
 
 # Torrente
 
-Download, find and sort torrents — an app for [Omarchy](https://omarchy.org), built the way Omarchy's own apps are: one window, driven from the keyboard, following the desktop theme and language live.
+Download, find and sort torrents — an app for [Omarchy](https://omarchy.org), built the way Omarchy's own apps are: one window, driven from the keyboard or the mouse, in the desktop's font, colors and language, following them live.
 
 ![Torrente](docs/screenshot.png)
 
@@ -11,9 +11,10 @@ Download, find and sort torrents — an app for [Omarchy](https://omarchy.org), 
 - **Sorted for you.** Each download lands in a folder by type — Movies, Series, Music, Books, Software, Games, Other — once it finishes. Unfinished downloads wait in a hidden folder.
 - **Tagged for you.** Quality, format and language come from the release name: `4K`, `1080p`, `HDR`, `HEVC`, `BluRay`, `WEB`, `FLAC`, `ES`, `LAT`, `VOSE`, `MULTI`…
 - **Ordered for you.** What needs attention comes first, then what's downloading, waiting, stopped, and done.
+- **Mouse or keyboard.** Every download has Stop/Resume and Remove buttons, and a right-click menu with the rest: open the folder, change the category, edit the tags. Every shortcut below has a mouse way too.
 - **Keeps going when closed.** Torrente drives [qbittorrent-nox](https://github.com/qbittorrent/qBittorrent) through its Web API. The engine runs as a user service, so downloads continue with the window closed — and qBittorrent's Web UI (or VueTorrent) still works alongside.
 - **Sorts even with the window closed.** `torrente daemon` runs beside the engine as a user service. It files and tags whatever gets added, whether from the browser, the bar, or the command line, and posts a desktop notification when a download finishes. Clicking the notification opens the folder.
-- **Lives on the Omarchy bar.** The bar plugin shows the download speed while something is downloading. Its panel lists what is downloading and what finished today: pause or resume a download, open its folder, paste a magnet link from the clipboard (`P`), or open Torrente (`O`). Middle-click the icon to paste a magnet; right-click it to open Torrente.
+- **Lives on the Omarchy bar.** The bar plugin shows the download speed while something is downloading. Its panel lists what is downloading and what finished today: pause or resume a download, cancel it or take it off the list (the bin asks for a second click; cancelling deletes what was downloaded, removing a finished one keeps its files), open its folder, paste a magnet link from the clipboard (`P`), or open Torrente (`O`). Middle-click the icon to paste a magnet; right-click it to open Torrente.
 
 ## Install
 

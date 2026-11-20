@@ -1,6 +1,6 @@
 pkgname=torrente
 pkgver=0.3.0
-pkgrel=1
+pkgrel=3
 pkgdesc='Download, find and sort torrents, the Omarchy way'
 arch=('x86_64' 'aarch64')
 url='https://github.com/nadalbatle/torrente'
