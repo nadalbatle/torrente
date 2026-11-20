@@ -2,6 +2,7 @@
 
 #include <QHash>
 #include <QJsonObject>
+#include <QNetworkAccessManager>
 #include <QObject>
 #include <QProcess>
 #include <QSet>
@@ -119,9 +120,15 @@ private:
     void pollSearch();
     void refreshPlugins();
     void addLocalFiles(const QStringList &paths);
+    void addTorrentData(const QList<QPair<QString, QByteArray>> &torrents);
+    void fetchTorrentLink(const QString &link);
+    void addLinks(const QStringList &links);
     void report(const QbtClient::Reply &reply, const QString &what);
 
     QbtClient *m_client;
+    // Fetches .torrent links here rather than in the engine, which drops a
+    // refused download silently; this way the window can say why.
+    QNetworkAccessManager m_web;
     FilePicker *m_picker;
     QSettings *m_settings;
 
