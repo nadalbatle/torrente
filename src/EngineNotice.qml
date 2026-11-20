@@ -6,7 +6,7 @@ import QtQuick.Layouts
 // and offers the one fix that's in reach.
 Rectangle {
     id: notice
-    color: "#0e0e10"
+    color: theme.background
 
     ColumnLayout {
         anchors.centerIn: parent
@@ -23,7 +23,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            color: "white"
+            color: theme.foreground
             font.pixelSize: 18
             font.weight: Font.DemiBold
             text: backend.engineState === "forbidden" ? qsTr("The engine asks for a password")
@@ -35,7 +35,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            color: "#a1a1a6"
+            color: theme.dim
             font.pixelSize: 13
             visible: text !== ""
             text: backend.engineState === "forbidden"
@@ -49,7 +49,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            color: "#e5534b"
+            color: theme.urgent
             font.pixelSize: 12
             visible: backend.engineState === "offline" && backend.engineError !== ""
             text: backend.engineError

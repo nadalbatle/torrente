@@ -12,10 +12,12 @@ ApplicationWindow {
     minimumHeight: 480
     visible: true
     title: "Torrente"
-    color: "#0e0e10"
+    color: theme.background
 
     Material.theme: Material.Dark
     Material.accent: theme.accent
+    Material.foreground: theme.foreground
+    Material.background: theme.background
     Material.roundedScale: theme.radius
 
     // 0: downloads, 1: search.
@@ -165,19 +167,25 @@ ApplicationWindow {
     Shortcut { sequences: ["Delete", "X"]; context: Qt.ApplicationShortcut; enabled: win.keysFree && win.page === 0 && win.selectedHash !== ""
         onActivated: removeDialog.visible = true }
     Shortcut { sequence: "C"; context: Qt.ApplicationShortcut; enabled: win.keysFree && win.page === 0 && win.selectedHash !== ""
-        onActivated: {
-            var options = [{ label: qsTr("No category"), value: "" }]
-            for (var i = 0; i < backend.categories.length; i++)
-                options.push({ label: backend.categories[i], value: backend.categories[i] })
-            categoryPicker.options = options
-            var item = win.selectedTorrent()
-            categoryPicker.open(item ? item.category : "")
-        }
-    }
+        onActivated: win.chooseCategory() }
     Shortcut { sequence: "T"; context: Qt.ApplicationShortcut; enabled: win.keysFree && win.page === 0 && win.selectedHash !== ""
-        onActivated: { var item = win.selectedTorrent(); tagsEditor.open(item ? item.tags : []) } }
+        onActivated: win.editTags() }
     Shortcut { sequence: "R"; context: Qt.ApplicationShortcut; enabled: win.keysFree && win.page === 0 && win.selectedHash !== ""
         onActivated: { backend.reclassify(win.selectedHash); win.toast(qsTr("Sorting it again…"), false) } }
+
+    function chooseCategory() {
+        var options = [{ label: qsTr("No category"), value: "" }]
+        for (var i = 0; i < backend.categories.length; i++)
+            options.push({ label: backend.categories[i], value: backend.categories[i] })
+        categoryPicker.options = options
+        var item = win.selectedTorrent()
+        categoryPicker.open(item ? item.category : "")
+    }
+
+    function editTags() {
+        var item = win.selectedTorrent()
+        tagsEditor.open(item ? item.tags : [])
+    }
 
     function downloadResult(index) {
         backend.download(index)
@@ -198,7 +206,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 52
-                color: "#121214"
+                color: theme.surface
 
                 RowLayout {
                     anchors.fill: parent
@@ -219,7 +227,7 @@ ApplicationWindow {
                                 id: tabLabel
                                 anchors.centerIn: parent
                                 text: tab.modelData
-                                color: win.page === tab.index ? "white" : "#8e8e93"
+                                color: win.page === tab.index ? theme.foreground : theme.dim
                                 font.pixelSize: 14
                                 font.weight: win.page === tab.index ? Font.DemiBold : Font.Normal
                             }
@@ -242,7 +250,7 @@ ApplicationWindow {
                         textFormat: Text.PlainText
                         visible: win.engineReady
                         text: "↓ " + Format.speed(backend.downloadSpeed, Qt.locale())
-                        color: backend.downloadSpeed > 0 ? theme.accent : "#8e8e93"
+                        color: backend.downloadSpeed > 0 ? theme.accent : theme.dim
                         font.pixelSize: 12
                         font.features: { "tnum": 1 }
                     }
@@ -251,7 +259,7 @@ ApplicationWindow {
                         visible: win.engineReady
                         Layout.leftMargin: 14
                         text: "↑ " + Format.speed(backend.uploadSpeed, Qt.locale())
-                        color: "#8e8e93"
+                        color: theme.dim
                         font.pixelSize: 12
                         font.features: { "tnum": 1 }
                     }
@@ -260,14 +268,14 @@ ApplicationWindow {
                         visible: win.engineReady && backend.freeSpace >= 0
                         Layout.leftMargin: 14
                         text: qsTr("%1 free").arg(Format.size(backend.freeSpace, Qt.locale()))
-                        color: "#6e6e73"
+                        color: theme.faint
                         font.pixelSize: 12
                     }
                     Label {
                         textFormat: Text.PlainText
                         Layout.leftMargin: 18
                         text: qsTr("? shortcuts")
-                        color: "#5a5a60"
+                        color: theme.faint
                         font.pixelSize: 12
                     }
                 }
@@ -275,7 +283,7 @@ ApplicationWindow {
                     anchors.bottom: parent.bottom
                     width: parent.width
                     height: 1
-                    color: "#222226"
+                    color: theme.hover
                 }
             }
 
@@ -294,7 +302,7 @@ ApplicationWindow {
                     Rectangle {
                         Layout.preferredWidth: 210
                         Layout.fillHeight: true
-                        color: "#121214"
+                        color: theme.surface
 
                         Flickable {
                             anchors.fill: parent
@@ -321,10 +329,9 @@ ApplicationWindow {
                                     Layout.bottomMargin: 4
                                     visible: backend.categories.length > 0
                                     text: qsTr("Folders")
-                                    color: "#6e6e73"
+                                    color: theme.faint
                                     font.pixelSize: 11
                                     font.weight: Font.DemiBold
-                                    font.capitalization: Font.AllUppercase
                                 }
                                 Repeater {
                                     model: backend.categories
@@ -351,10 +358,9 @@ ApplicationWindow {
                                     Layout.bottomMargin: 4
                                     visible: Object.keys(backend.torrents.tagCounts).length > 0
                                     text: qsTr("Tags")
-                                    color: "#6e6e73"
+                                    color: theme.faint
                                     font.pixelSize: 11
                                     font.weight: Font.DemiBold
-                                    font.capitalization: Font.AllUppercase
                                 }
                                 Repeater {
                                     model: Object.keys(backend.torrents.tagCounts).sort()
@@ -369,7 +375,7 @@ ApplicationWindow {
                             }
                         }
                     }
-                    Rectangle { Layout.fillHeight: true; Layout.preferredWidth: 1; color: "#222226" }
+                    Rectangle { Layout.fillHeight: true; Layout.preferredWidth: 1; color: theme.hover }
 
                     ColumnLayout {
                         Layout.fillWidth: true
@@ -414,10 +420,9 @@ ApplicationWindow {
                                         : section === "waiting" ? qsTr("Waiting")
                                         : section === "stopped" ? qsTr("Stopped")
                                         : qsTr("Done")
-                                    color: section === "attention" ? "#e5534b" : "#6e6e73"
+                                    color: section === "attention" ? theme.urgent : theme.faint
                                     font.pixelSize: 11
                                     font.weight: Font.DemiBold
-                                    font.capitalization: Font.AllUppercase
                                 }
                             }
 
@@ -425,6 +430,10 @@ ApplicationWindow {
                                 selected: hash === win.selectedHash
                                 onClicked: { win.selectedHash = hash; pageStack.forceActiveFocus() }
                                 onActivated: backend.openFolder(hash)
+                                onToggleRequested: backend.toggle(hash)
+                                onRemoveRequested: removeDialog.visible = true
+                                onCategoryRequested: win.chooseCategory()
+                                onTagsRequested: win.editTags()
                             }
                         }
 
@@ -440,7 +449,7 @@ ApplicationWindow {
                                 textFormat: Text.PlainText
                                 Layout.alignment: Qt.AlignHCenter
                                 text: backend.torrents.total === 0 ? qsTr("No downloads yet") : qsTr("Nothing matches")
-                                color: "white"
+                                color: theme.foreground
                                 font.pixelSize: 17
                                 font.weight: Font.DemiBold
                             }
@@ -452,7 +461,7 @@ ApplicationWindow {
                                 wrapMode: Text.WordWrap
                                 visible: backend.torrents.total === 0
                                 text: qsTr("Paste a magnet link with Ctrl+V, drop a .torrent file here, press A to pick one, or press 2 to search.")
-                                color: "#8e8e93"
+                                color: theme.dim
                                 font.pixelSize: 13
                             }
                             Item { Layout.fillHeight: true }
@@ -492,7 +501,7 @@ ApplicationWindow {
                             textFormat: Text.PlainText
                             visible: backend.results.count > 0 || (backend.searchPattern !== "" && !backend.searching)
                             text: qsTr("%n result(s)", "", backend.results.count)
-                            color: "#8e8e93"
+                            color: theme.dim
                             font.pixelSize: 12
                         }
                         DialogButton {
@@ -541,7 +550,7 @@ ApplicationWindow {
                                 : backend.searching ? qsTr("Searching…")
                                 : backend.searchPattern !== "" ? qsTr("Nothing found for “%1”").arg(backend.searchPattern)
                                 : qsTr("Type what you're looking for and press Enter")
-                            color: "white"
+                            color: theme.foreground
                             font.pixelSize: 17
                             font.weight: Font.DemiBold
                         }
@@ -553,7 +562,7 @@ ApplicationWindow {
                             wrapMode: Text.WordWrap
                             visible: parent.noEngines
                             text: qsTr("Torrente searches through qBittorrent's search plugins. Choose which sites to search first.")
-                            color: "#8e8e93"
+                            color: theme.dim
                             font.pixelSize: 13
                         }
                         DialogButton {
@@ -600,9 +609,9 @@ ApplicationWindow {
             width: Math.min(toastLabel.implicitWidth + 36, parent.width - 48)
             height: toastLabel.implicitHeight + 20
             radius: Math.min(6, theme.radius)
-            color: "#1c1c1e"
+            color: theme.background
             border.width: 1
-            border.color: problem ? "#e5534b" : "#3a3a3e"
+            border.color: problem ? theme.urgent : theme.line
             opacity: 0
             visible: opacity > 0
             Behavior on opacity { NumberAnimation { duration: 180 } }
@@ -612,7 +621,7 @@ ApplicationWindow {
                 anchors.centerIn: parent
                 width: Math.min(implicitWidth, parent.parent.width - 84)
                 wrapMode: Text.WordWrap
-                color: toastBox.problem ? "#ff9d96" : "white"
+                color: toastBox.problem ? theme.urgent : theme.foreground
                 font.pixelSize: 13
             }
             Timer {

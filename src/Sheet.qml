@@ -6,7 +6,7 @@ import QtQuick.Controls
 Rectangle {
     id: sheet
     anchors.fill: parent
-    color: "#cc000000"
+    color: theme.overlay
     visible: false
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
@@ -27,6 +27,35 @@ Rectangle {
         height: Math.min(column.implicitHeight + 48, sheet.height - 48)
         MouseArea { anchors.fill: parent }
 
+        // The mouse's way out, besides a click outside or Escape.
+        AbstractButton {
+            id: closeButton
+            objectName: "sheetClose"
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: 12
+            width: 28
+            height: 28
+            hoverEnabled: true
+            focusPolicy: Qt.NoFocus
+            onClicked: sheet.dismissed()
+            ToolTip.visible: hovered
+            ToolTip.delay: 500
+            ToolTip.text: qsTr("Close")
+            contentItem: Label {
+                text: "\u00d7"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                color: closeButton.hovered ? theme.foreground : theme.dim
+            }
+            background: Rectangle {
+                radius: Math.min(4, theme.radius)
+                color: closeButton.down ? theme.pressed : closeButton.hovered ? theme.pressed : "transparent"
+            }
+            HoverHandler { cursorShape: Qt.PointingHandCursor }
+        }
+
         Column {
             id: column
             anchors.fill: parent
@@ -36,7 +65,7 @@ Rectangle {
             Label {
                 textFormat: Text.PlainText
                 text: sheet.title
-                color: "white"
+                color: theme.foreground
                 font.pixelSize: 16
                 font.weight: Font.DemiBold
             }

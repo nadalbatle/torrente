@@ -27,10 +27,17 @@
   "action.paste": "Pegar enlace magnet",
   "action.openTorrente": "Abrir Torrente",
   "action.startEngine": "Arrancar el motor",
+  "action.cancel": "Cancelar la descarga",
+  "action.remove": "Quitar de la lista",
+  "action.confirm": "Pulsa otra vez para confirmar",
   "notice.added": "Añadido. Torrente lo archivará cuando llegue la lista de archivos.",
   "notice.noMagnet": "No hay ningún enlace magnet en el portapapeles.",
   "notice.engineRefused": "El motor lo ha rechazado.",
   "notice.starting": "Arrancando el motor…",
+  "notice.confirmCancel": "Pulsa otra vez la papelera para cancelarla y borrar lo descargado.",
+  "notice.confirmRemove": "Pulsa otra vez la papelera para quitarla de la lista. Los archivos se quedan.",
+  "notice.cancelled": "Descarga cancelada.",
+  "notice.removed": "Quitada de la lista.",
   "eta.minutes": "quedan %1 min",
   "eta.hours": "quedan %1 h %2 min"
 }

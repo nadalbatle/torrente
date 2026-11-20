@@ -61,16 +61,39 @@ void Theme::refreshRounding() {
     m_roundingTimeout.start();
 }
 
-QString Theme::readAccent(const QString &path) {
+QString Theme::readColor(const QString &path, const QString &key, const QString &fallback) {
     QFile file(path);
     if (file.open(QIODevice::ReadOnly)) {
-        const QRegularExpression expression(R"re(^\s*accent\s*=\s*["'](#[0-9a-fA-F]{6})["'])re",
-                                            QRegularExpression::MultilineOption);
+        const QRegularExpression expression(
+            QStringLiteral(R"re(^\s*%1\s*=\s*["'](#[0-9a-fA-F]{6})["'])re").arg(QRegularExpression::escape(key)),
+            QRegularExpression::MultilineOption);
         const auto match = expression.match(QString::fromUtf8(file.readAll()));
         if (match.hasMatch())
             return match.captured(1);
     }
-    return "#FFD60A";
+    return fallback;
+}
+
+QString Theme::readAccent(const QString &path) {
+    return readColor(path, "accent", "#FFD60A");
+}
+
+QString Theme::mix(double amount) const {
+    const QColor b(m_background), f(m_foreground);
+    auto blend = [amount](double x, double y) { return x + (y - x) * amount; };
+    return QColor::fromRgbF(blend(b.redF(), f.redF()), blend(b.greenF(), f.greenF()), blend(b.blueF(), f.blueF()))
+        .name();
+}
+
+// The bar's own dimmed text: the foreground, darker.
+QString Theme::dim() const {
+    return QColor(m_foreground).darker(145).name();
+}
+
+QString Theme::overlay() const {
+    QColor c(m_background);
+    c.setAlphaF(0.8);
+    return c.name(QColor::HexArgb);
 }
 
 // Black or white, whichever reads on the accent (WCAG relative luminance).
@@ -100,9 +123,17 @@ void Theme::reload() {
         if (QFileInfo::exists(path))
             m_watcher.addPath(path);
 
-    const auto accent = readAccent(m_directory + "/theme/colors.toml");
-    if (accent != m_accent) {
+    const QString colors = m_directory + "/theme/colors.toml";
+    const auto accent = readAccent(colors);
+    const auto background = readColor(colors, "background", "#121212");
+    const auto foreground = readColor(colors, "foreground", "#e6e6e6");
+    // The shell's "urgent" is the theme's red.
+    const auto urgent = readColor(colors, "red", "#e5534b");
+    if (accent != m_accent || background != m_background || foreground != m_foreground || urgent != m_urgent) {
         m_accent = accent;
+        m_background = background;
+        m_foreground = foreground;
+        m_urgent = urgent;
         emit changed();
     }
 }

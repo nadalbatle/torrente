@@ -24,7 +24,7 @@ Sheet {
             Label {
                 textFormat: Text.PlainText
                 text: qsTr("Download folder")
-                color: "#8e8e93"
+                color: theme.dim
                 font.pixelSize: 12
             }
             RowLayout {
@@ -35,7 +35,7 @@ Sheet {
                     Layout.fillWidth: true
                     text: backend.downloadFolder
                     elide: Text.ElideMiddle
-                    color: "white"
+                    color: theme.foreground
                     font.pixelSize: 13
                 }
                 DialogButton {
@@ -48,7 +48,7 @@ Sheet {
             }
         }
 
-        Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: "#2c2c30" }
+        Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: theme.selected }
 
         RowLayout {
             Layout.fillWidth: true
@@ -58,14 +58,14 @@ Sheet {
                 Label {
                     textFormat: Text.PlainText
                     text: qsTr("Sort into folders by type")
-                    color: "white"
+                    color: theme.foreground
                     font.pixelSize: 13
                 }
                 Label {
                     textFormat: Text.PlainText
                     Layout.fillWidth: true
                     text: qsTr("Movies, Series, Music, Books, Software and Games each get a folder. Downloads wait in a hidden folder until they finish.")
-                    color: "#8e8e93"
+                    color: theme.dim
                     font.pixelSize: 12
                     wrapMode: Text.WordWrap
                 }
@@ -87,14 +87,14 @@ Sheet {
                 Label {
                     textFormat: Text.PlainText
                     text: qsTr("Tag automatically")
-                    color: "white"
+                    color: theme.foreground
                     font.pixelSize: 13
                 }
                 Label {
                     textFormat: Text.PlainText
                     Layout.fillWidth: true
                     text: qsTr("Quality, format and language from the release name: 4K, HEVC, FLAC, ES…")
-                    color: "#8e8e93"
+                    color: theme.dim
                     font.pixelSize: 12
                     wrapMode: Text.WordWrap
                 }
@@ -112,7 +112,7 @@ Sheet {
             Layout.fillWidth: true
             visible: backend.autoFolders
             text: qsTr("Changing the folder moves the downloads already sorted into it.")
-            color: "#8e8e93"
+            color: theme.dim
             font.pixelSize: 12
             wrapMode: Text.WordWrap
         }

@@ -11,11 +11,16 @@ Button {
     id: control
     property bool primary: false
     property string mnemonic: ""
+    // The same button, smaller, for actions inside a list row.
+    property bool compact: false
 
-    leftPadding: 16
-    rightPadding: 16
-    topPadding: 8
-    bottomPadding: 8
+    leftPadding: compact ? 10 : 16
+    rightPadding: compact ? 10 : 16
+    topPadding: compact ? 4 : 8
+    bottomPadding: compact ? 4 : 8
+    focusPolicy: compact ? Qt.NoFocus : Qt.StrongFocus
+    topInset: compact ? 0 : 6
+    bottomInset: compact ? 0 : 6
     Keys.onReturnPressed: clicked()
     Keys.onEnterPressed: clicked()
 
@@ -28,22 +33,22 @@ Button {
     contentItem: Label {
         text: control.formattedText
         textFormat: Text.StyledText
-        color: control.primary ? theme.accentForeground : "white"
-        font.pixelSize: 13
+        color: control.primary ? theme.accentForeground : theme.foreground
+        font.pixelSize: control.compact ? 12 : 13
         font.weight: Font.DemiBold
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
     background: Rectangle {
-        implicitWidth: 88
-        implicitHeight: 34
+        implicitWidth: control.compact ? 0 : 88
+        implicitHeight: control.compact ? 26 : 34
         radius: Math.min(4, theme.radius)
         color: control.primary
             ? Qt.darker(theme.accent, control.down ? 1.2 : control.hovered ? 1.08 : 1)
-            : control.down ? "#3c3c40" : control.hovered ? "#35353a" : "#2c2c2f"
+            : control.down ? theme.pressed : control.hovered ? theme.pressed : theme.selected
         border.width: control.activeFocus ? 2 : 1
-        border.color: control.activeFocus ? "white"
-            : control.primary ? Qt.darker(theme.accent, 1.15) : "#3a3a3e"
+        border.color: control.activeFocus ? theme.foreground
+            : control.primary ? Qt.darker(theme.accent, 1.15) : theme.line
     }
     HoverHandler { cursorShape: Qt.PointingHandCursor }
     Shortcut {

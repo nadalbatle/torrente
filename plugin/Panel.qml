@@ -30,6 +30,10 @@ Panel {
   readonly property string pasteIcon: "󰆒"
   readonly property string openIcon: "󰏌"
   readonly property string engineIcon: "󰐥"
+  readonly property string removeIcon: "󰆴"
+
+  // The row whose remove button was clicked once and waits for a second click.
+  property string confirmingHash: ""
 
   readonly property color foreground: bar ? bar.foreground : Commons.Color.foreground
   readonly property color urgent: bar ? bar.urgent : Commons.Color.urgent
@@ -147,6 +151,26 @@ Panel {
     var action = Model.isStopped(torrent) ? "start" : "stop"
     request("POST", "torrents/" + action, "hashes=" + torrent.hash, function(status) {
       if (status !== 200) say(strings.t("notice.engineRefused"), true)
+      sync()
+    })
+  }
+
+  // Unfinished downloads are cancelled (the partial files go too); finished
+  // ones only leave the list, their files stay. Either takes a second click.
+  function removeTorrent(torrent, cancel) {
+    if (!torrent) return
+    if (confirmingHash !== torrent.hash) {
+      confirmingHash = torrent.hash
+      confirmTimer.restart()
+      say(strings.t(cancel ? "notice.confirmCancel" : "notice.confirmRemove"), true)
+      return
+    }
+    confirmingHash = ""
+    confirmTimer.stop()
+    var form = "hashes=" + torrent.hash + "&deleteFiles=" + (cancel ? "true" : "false")
+    request("POST", "torrents/delete", form, function(status) {
+      if (status !== 200) say(strings.t("notice.engineRefused"), true)
+      else say(strings.t(cancel ? "notice.cancelled" : "notice.removed"), false)
       sync()
     })
   }
@@ -271,6 +295,7 @@ Panel {
   function refresh() { sync() }
 
   onOpenedChanged: if (opened) {
+    confirmingHash = ""
     cursorActive = false
     cursorIndex = 0
     sync()
@@ -310,6 +335,12 @@ Panel {
     id: retryTimer
     interval: 1500
     onTriggered: root.sync()
+  }
+
+  Timer {
+    id: confirmTimer
+    interval: 4000
+    onTriggered: root.confirmingHash = ""
   }
 
   Timer {
@@ -427,6 +458,8 @@ Panel {
               actionIcon: Model.isStopped(modelData) ? root.playIcon : root.pauseIcon
               actionTip: Model.isStopped(modelData) ? strings.t("action.resume") : strings.t("action.pause")
               onAction: root.toggleTorrent(modelData)
+              removeTip: strings.t("action.cancel")
+              onRemove: root.removeTorrent(modelData, true)
               onOpen: root.openFolder(modelData)
             }
           }
@@ -463,6 +496,8 @@ Panel {
               actionIcon: root.folderIcon
               actionTip: strings.t("action.openFolder")
               onAction: root.openFolder(modelData)
+              removeTip: strings.t("action.remove")
+              onRemove: root.removeTorrent(modelData, false)
               onOpen: root.openFolder(modelData)
             }
           }
@@ -542,7 +577,10 @@ Panel {
     property bool problem: false
     property string actionIcon: ""
     property string actionTip: ""
+    property string removeTip: ""
+    readonly property bool confirming: root.confirmingHash !== "" && root.confirmingHash === torrent.hash
     signal action()
+    signal remove()
     signal open()
 
     width: parent ? parent.width : 0
@@ -559,9 +597,22 @@ Panel {
     }
 
     PanelActionButton {
-      id: actionButton
+      id: removeButton
       anchors.right: parent.right
       anchors.rightMargin: Style.space(6)
+      anchors.verticalCenter: parent.verticalCenter
+      iconText: root.removeIcon
+      tooltipText: row.confirming ? strings.t("action.confirm") : row.removeTip
+      foreground: row.confirming ? root.urgent : root.foreground
+      hoverColor: root.urgent
+      fontFamily: root.fontFamily
+      onClicked: row.remove()
+    }
+
+    PanelActionButton {
+      id: actionButton
+      anchors.right: removeButton.left
+      anchors.rightMargin: Style.space(2)
       anchors.verticalCenter: parent.verticalCenter
       iconText: row.actionIcon
       tooltipText: row.actionTip

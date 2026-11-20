@@ -25,7 +25,7 @@ Item {
         anchors.leftMargin: 8
         anchors.rightMargin: 8
         radius: Math.min(6, theme.radius)
-        color: row.selected ? "#26262a" : hover.hovered ? "#1a1a1d" : "transparent"
+        color: row.selected ? theme.selected : hover.hovered ? theme.hover : "transparent"
         border.width: row.selected ? 1 : 0
         border.color: Qt.rgba(Qt.color(theme.accent).r, Qt.color(theme.accent).g, Qt.color(theme.accent).b, 0.55)
     }
@@ -49,14 +49,14 @@ Item {
                 Layout.fillWidth: true
                 text: row.name
                 elide: Text.ElideRight
-                color: "white"
+                color: theme.foreground
                 font.pixelSize: 13
                 font.weight: Font.DemiBold
             }
             Label {
                 textFormat: Text.PlainText
                 text: row.engine
-                color: "#6e6e73"
+                color: theme.faint
                 font.pixelSize: 11
             }
         }
@@ -65,7 +65,7 @@ Item {
             Layout.preferredWidth: 80
             horizontalAlignment: Text.AlignRight
             text: Format.size(row.size, Qt.locale())
-            color: "#c7c7cc"
+            color: theme.foreground
             font.pixelSize: 12
             font.features: { "tnum": 1 }
         }
@@ -74,7 +74,7 @@ Item {
             Layout.preferredWidth: 70
             horizontalAlignment: Text.AlignRight
             text: "▲ " + row.seeds
-            color: row.seeds > 10 ? theme.accent : row.seeds > 0 ? "#c7c7cc" : "#6e6e73"
+            color: row.seeds > 10 ? theme.accent : row.seeds > 0 ? theme.foreground : theme.faint
             font.pixelSize: 12
             font.features: { "tnum": 1 }
         }
@@ -83,7 +83,7 @@ Item {
             Layout.preferredWidth: 60
             horizontalAlignment: Text.AlignRight
             text: "▼ " + row.peers
-            color: "#8e8e93"
+            color: theme.dim
             font.pixelSize: 12
             font.features: { "tnum": 1 }
         }

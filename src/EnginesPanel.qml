@@ -54,7 +54,7 @@ Sheet {
             textFormat: Text.PlainText
             Layout.fillWidth: true
             text: qsTr("Searches go through qBittorrent's search plugins. Pick the sites to search; Space marks one, I installs what's marked.")
-            color: "#8e8e93"
+            color: theme.dim
             font.pixelSize: 12
             wrapMode: Text.WordWrap
         }
@@ -84,7 +84,7 @@ Sheet {
                 Rectangle {
                     anchors.fill: parent
                     radius: Math.min(4, theme.radius)
-                    color: entry.index === list.currentIndex ? "#2c2c30" : "transparent"
+                    color: entry.index === list.currentIndex ? theme.selected : "transparent"
                 }
                 RowLayout {
                     anchors.fill: parent
@@ -94,14 +94,14 @@ Sheet {
                         textFormat: Text.PlainText
                         Layout.fillWidth: true
                         text: entry.plugin ? entry.plugin.fullName : entry.modelData.name
-                        color: "white"
+                        color: theme.foreground
                         font.pixelSize: 13
                     }
                     Label {
                         textFormat: Text.PlainText
                         text: entry.plugin ? (entry.plugin.enabled ? qsTr("On") : qsTr("Off"))
                                            : panel.selected[entry.modelData.name] ? qsTr("Will install") : qsTr("Not installed")
-                        color: entry.plugin && entry.plugin.enabled ? theme.accent : "#8e8e93"
+                        color: entry.plugin && entry.plugin.enabled ? theme.accent : theme.dim
                         font.pixelSize: 12
                     }
                     Switch {
@@ -126,7 +126,7 @@ Sheet {
                 textFormat: Text.PlainText
                 visible: backend.installingPlugins
                 text: qsTr("Installing…")
-                color: "#8e8e93"
+                color: theme.dim
                 font.pixelSize: 12
             }
             Item { Layout.fillWidth: true }

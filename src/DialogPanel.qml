@@ -4,8 +4,9 @@ import QtQuick
 // Every dialog's panel: dark, a quiet border, and the corners Hyprland gives
 // windows (sharp on Omarchy's default).
 Rectangle {
-    color: "#1c1c1e"
-    border.width: 1
-    border.color: "#3a3a3e"
+    color: theme.background
+    // The accent frame the bar's panels wear.
+    border.width: 2
+    border.color: theme.accent
     radius: theme.radius
 }

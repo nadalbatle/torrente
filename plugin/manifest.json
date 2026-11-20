@@ -5,7 +5,7 @@
   "version": "0.3.0",
   "author": "nadalbatle",
   "license": "MIT",
-  "description": "Torrente's downloads on the bar: speed while downloading, a panel to pause, resume and open them, and a quick way to add the magnet on the clipboard. Talks only to Torrente's engine on localhost.",
+  "description": "Torrente's downloads on the bar: speed while downloading, a panel to pause, resume, cancel and open them, and a quick way to add the magnet on the clipboard. Talks only to Torrente's engine on localhost.",
   "kinds": [
     "bar-widget"
   ],
