@@ -2,6 +2,7 @@
 
 
 #include <QClipboard>
+#include <QDateTime>
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
@@ -46,6 +47,15 @@ Backend::Backend(QbtClient *client, FilePicker *picker, QSettings *settings, QOb
     : QObject(parent), m_client(client), m_picker(picker), m_settings(settings) {
     m_syncTimer.setInterval(1000);
     connect(&m_syncTimer, &QTimer::timeout, this, &Backend::sync);
+
+    m_downloadsDeadline.setSingleShot(true);
+    m_downloadsDeadline.setInterval(5 * 60 * 1000);
+    connect(&m_downloadsDeadline, &QTimer::timeout, this, [this] {
+        const auto folders = m_downloadsWatcher.directories();
+        if (!folders.isEmpty())
+            m_downloadsWatcher.removePaths(folders);
+    });
+    connect(&m_downloadsWatcher, &QFileSystemWatcher::directoryChanged, this, &Backend::checkDownloads);
 
     m_searchTimer.setInterval(800);
     connect(&m_searchTimer, &QTimer::timeout, this, &Backend::pollSearch);
@@ -457,8 +467,14 @@ void Backend::fetchTorrentLink(const QString &link) {
         const QString site = QUrl(link).host();
         const int status = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (reply->error() != QNetworkReply::NoError) {
-            if (status == 401 || status == 403)
-                emit notify(tr("%1 won't hand out this torrent without signing in (%2).").arg(site).arg(status), true);
+            if (status == 401 || status == 403) {
+                // Like any other torrent app: the browser has the session, so
+                // it fetches the .torrent, and Torrente takes it from there.
+                QDesktopServices::openUrl(QUrl(link));
+                watchDownloads();
+                emit notify(tr("%1 wants you signed in, so the link is open in your browser. "
+                               "The torrent comes in on its own once it downloads.").arg(site), false);
+            }
             else if (status == 404 || status == 410)
                 emit notify(tr("That torrent isn't on %1 any more (%2).").arg(site).arg(status), true);
             else if (status >= 400)
@@ -487,6 +503,39 @@ void Backend::fetchTorrentLink(const QString &link) {
             name = QStringLiteral("download.torrent");
         addTorrentData({{name, data}});
     });
+}
+
+void Backend::watchDownloads() {
+    const QString folder = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    if (folder.isEmpty() || !QFileInfo(folder).isDir())
+        return;
+    if (!m_downloadsWatcher.directories().contains(folder)) {
+        // What's already there was not just downloaded.
+        m_downloadsSeen.clear();
+        for (const QFileInfo &file : QDir(folder).entryInfoList({"*.torrent"}, QDir::Files))
+            m_downloadsSeen.insert(file.absoluteFilePath() + '|' + QString::number(file.lastModified().toMSecsSinceEpoch()));
+        m_downloadsWatcher.addPath(folder);
+    }
+    m_downloadsDeadline.start();
+}
+
+void Backend::checkDownloads() {
+    for (const QString &folder : m_downloadsWatcher.directories()) {
+        for (const QFileInfo &file : QDir(folder).entryInfoList({"*.torrent"}, QDir::Files)) {
+            const QString key = file.absoluteFilePath() + '|' + QString::number(file.lastModified().toMSecsSinceEpoch());
+            if (m_downloadsSeen.contains(key) || file.size() == 0 || file.size() > kMaxTorrentFile)
+                continue;
+            QFile in(file.absoluteFilePath());
+            if (!in.open(QIODevice::ReadOnly))
+                continue;
+            const QByteArray data = in.readAll();
+            // Still being written: the next change will bring it back.
+            if (!looksLikeTorrent(data))
+                continue;
+            m_downloadsSeen.insert(key);
+            addTorrentData({{file.fileName(), data}});
+        }
+    }
 }
 
 void Backend::addLocalFiles(const QStringList &paths) {

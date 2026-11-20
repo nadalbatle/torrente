@@ -6,7 +6,7 @@ Download, find and sort torrents — an app for [Omarchy](https://omarchy.org), 
 
 ![Torrente](docs/screenshot.png)
 
-- **Magnets, files and links.** Paste a magnet link with Ctrl+V, drop a `.torrent` on the window, or click a magnet link in the browser.
+- **Magnets, files and links.** Paste a magnet link with Ctrl+V, drop a `.torrent` on the window, or click a magnet link in the browser. A `.torrent` link from a site that wants you signed in (an archive.org item, say) opens in your browser, which has the session, and the `.torrent` it saves to Downloads comes in on its own.
 - **Search.** Search the web through qBittorrent's own search plugins; you pick which sites to use.
 - **Sorted for you.** Each download lands in a folder by type — Movies, Series, Music, Books, Software, Games, Other — once it finishes. Unfinished downloads wait in a hidden folder.
 - **Tagged for you.** Quality, format and language come from the release name: `4K`, `1080p`, `HDR`, `HEVC`, `BluRay`, `WEB`, `FLAC`, `ES`, `LAT`, `VOSE`, `MULTI`…
