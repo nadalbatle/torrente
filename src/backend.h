@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QFileSystemWatcher>
 #include <QHash>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
@@ -123,12 +124,19 @@ private:
     void addTorrentData(const QList<QPair<QString, QByteArray>> &torrents);
     void fetchTorrentLink(const QString &link);
     void addLinks(const QStringList &links);
+    void watchDownloads();
+    void checkDownloads();
     void report(const QbtClient::Reply &reply, const QString &what);
 
     QbtClient *m_client;
     // Fetches .torrent links here rather than in the engine, which drops a
     // refused download silently; this way the window can say why.
     QNetworkAccessManager m_web;
+    // A site that wants a login gets the link opened in the browser, which
+    // has the session; the .torrent it saves to Downloads is picked up here.
+    QFileSystemWatcher m_downloadsWatcher;
+    QTimer m_downloadsDeadline;
+    QSet<QString> m_downloadsSeen;
     FilePicker *m_picker;
     QSettings *m_settings;
 

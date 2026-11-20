@@ -5,7 +5,7 @@
   "%1 min left": "quedan %1 min",
   "%1 refused the torrent (%2).": "%1 ha rechazado el torrent (%2).",
   "%1 seeds · %2 peers": "%1 semillas · %2 pares",
-  "%1 won't hand out this torrent without signing in (%2).": "%1 no da este torrent sin iniciar sesión (%2).",
+  "%1 wants you signed in, so the link is open in your browser. The torrent comes in on its own once it downloads.": "%1 pide iniciar sesión, así que he abierto el enlace en tu navegador. El torrent entrará solo en cuanto se descargue.",
   "%n result(s)": {
     "one": "%n resultado",
     "many": "%n resultados",
