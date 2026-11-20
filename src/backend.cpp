@@ -1,5 +1,6 @@
 #include "backend.h"
 
+
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDir>
@@ -8,6 +9,7 @@
 #include <QGuiApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QNetworkReply>
 #include <QRegularExpression>
 #include <QStandardPaths>
 #include <QUrl>
@@ -21,6 +23,18 @@ namespace {
 const char *kPluginBase = "https://raw.githubusercontent.com/qbittorrent/search-plugins/master/nova3/engines/";
 const QStringList kOfficialPlugins = {"eztv", "limetorrents", "piratebay", "solidtorrents",
                                       "torlock", "torrentproject", "torrentscsv"};
+
+// Bencoded torrent metadata: a dictionary holding an info dictionary. A web
+// page (a login form, an error) is neither.
+bool looksLikeTorrent(const QByteArray &data) {
+    return data.startsWith('d') && data.contains("4:info");
+}
+
+bool isWebLink(const QString &text) {
+    return text.startsWith("http://", Qt::CaseInsensitive) || text.startsWith("https://", Qt::CaseInsensitive);
+}
+
+constexpr qint64 kMaxTorrentFile = 64 * 1024 * 1024;
 
 bool isMagnetOrLink(const QString &text) {
     return text.startsWith("magnet:?", Qt::CaseInsensitive) || text.startsWith("http://", Qt::CaseInsensitive)
@@ -400,20 +414,79 @@ void Backend::addSources(const QStringList &sources) {
             emit notify(tr("Not a magnet link or torrent file: %1").arg(source.left(80)), true);
     }
 
-    if (!links.isEmpty()) {
-        Form form;
-        form.addQueryItem("urls", links.join('\n'));
-        m_client->post("torrents/add", form, [this, count = links.size()](const QbtClient::Reply &reply) {
-            if (reply.ok && reply.body.trimmed() != "Fails.")
-                emit notify(tr("Added %n torrent(s)", "", count), false);
-            else
-                emit notify(tr("The engine refused the torrent: %1").arg(reply.error.isEmpty()
-                                                                           ? QString::fromUtf8(reply.body)
-                                                                           : reply.error), true);
-        });
+    QStringList engineLinks;
+    for (const QString &link : links) {
+        if (isWebLink(link))
+            fetchTorrentLink(link);
+        else
+            engineLinks.append(link);
     }
+    addLinks(engineLinks);
     if (!files.isEmpty())
         addLocalFiles(files);
+}
+
+// Magnets, and links Torrente couldn't fetch itself, go to the engine as they are.
+void Backend::addLinks(const QStringList &links) {
+    if (links.isEmpty())
+        return;
+    Form form;
+    form.addQueryItem("urls", links.join('\n'));
+    m_client->post("torrents/add", form, [this, count = links.size()](const QbtClient::Reply &reply) {
+        if (reply.ok && reply.body.trimmed() != "Fails.")
+            emit notify(tr("Added %n torrent(s)", "", count), false);
+        else
+            emit notify(tr("The engine refused the torrent: %1").arg(reply.error.isEmpty()
+                                                                       ? QString::fromUtf8(reply.body)
+                                                                       : reply.error), true);
+    });
+}
+
+void Backend::fetchTorrentLink(const QString &link) {
+    QNetworkRequest request{QUrl(link)};
+    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+    request.setTransferTimeout(30000);
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Torrente"));
+    QNetworkReply *reply = m_web.get(request);
+    connect(reply, &QNetworkReply::downloadProgress, reply, [reply](qint64 received, qint64) {
+        if (received > kMaxTorrentFile)
+            reply->abort();
+    });
+    connect(reply, &QNetworkReply::finished, this, [this, reply, link] {
+        reply->deleteLater();
+        const QString site = QUrl(link).host();
+        const int status = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (reply->error() != QNetworkReply::NoError) {
+            if (status == 401 || status == 403)
+                emit notify(tr("%1 won't hand out this torrent without signing in (%2).").arg(site).arg(status), true);
+            else if (status == 404 || status == 410)
+                emit notify(tr("That torrent isn't on %1 any more (%2).").arg(site).arg(status), true);
+            else if (status >= 400)
+                emit notify(tr("%1 refused the torrent (%2).").arg(site).arg(status), true);
+            else if (reply->error() == QNetworkReply::ProtocolUnknownError
+                     || reply->error() == QNetworkReply::InsecureRedirectError)
+                // Redirected somewhere Torrente doesn't follow (some trackers
+                // send a magnet): the engine may still manage.
+                addLinks({link});
+            else if (reply->error() == QNetworkReply::HostNotFoundError)
+                emit notify(tr("Can't find %1. Check the link and the connection.").arg(site), true);
+            else if (reply->error() == QNetworkReply::TimeoutError
+                     || reply->error() == QNetworkReply::OperationCanceledError)
+                emit notify(tr("%1 didn't send the torrent.").arg(site), true);
+            else
+                emit notify(tr("Couldn't download the torrent from %1.").arg(site), true);
+            return;
+        }
+        const QByteArray data = reply->readAll();
+        if (!looksLikeTorrent(data)) {
+            emit notify(tr("That link on %1 is a web page, not a torrent file.").arg(site), true);
+            return;
+        }
+        QString name = QFileInfo(reply->url().path()).fileName();
+        if (name.isEmpty())
+            name = QStringLiteral("download.torrent");
+        addTorrentData({{name, data}});
+    });
 }
 
 void Backend::addLocalFiles(const QStringList &paths) {
@@ -428,6 +501,10 @@ void Backend::addLocalFiles(const QStringList &paths) {
         }
         torrents.append({QFileInfo(path).fileName(), file.readAll()});
     }
+    addTorrentData(torrents);
+}
+
+void Backend::addTorrentData(const QList<QPair<QString, QByteArray>> &torrents) {
     if (torrents.isEmpty())
         return;
     m_client->addTorrentFiles(torrents, {}, [this, count = torrents.size()](const QbtClient::Reply &reply) {
